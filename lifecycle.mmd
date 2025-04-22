@@ -1,0 +1,37 @@
+flowchart TD
+  A[Author Metamodel: JSON] --> B[Validate Structure: JSON Schema]
+  B --> C[Push to Git: Metamodel as Code]
+  C --> D[Create PR with Change Proposal]
+  D --> E[Run Validation Tests on Sample Metadata]
+  E --> F[Review by Data Architecture Committee]
+  F -->|Approved| G[Tag Release: SemVer]
+  G --> H[Deploy to Metadata Registry]
+  H --> I[Notify Stakeholders: Slack/Email]
+  I --> J[Interactive Form/API for Metadata Collection]
+
+  subgraph "Enforcement & Compliance"
+    J --> K[Validate Metadata Submissions]
+    K --> L[Reject Invalid or Incomplete Assets]
+    K --> M[Log Valid Submissions with Version Info]
+    M --> N[Audit & Track Conformance Dashboards]
+  end
+
+  L --> O[Notify Product Owners of Violations]
+  G --> P[Retire Old Metamodel Versions]
+
+  style A fill:#fdf6e3,stroke:#657b83
+  style B fill:#eee8d5,stroke:#657b83
+  style C fill:#fdf6e3,stroke:#657b83
+  style D fill:#eee8d5,stroke:#657b83
+  style E fill:#fdf6e3,stroke:#657b83
+  style F fill:#eee8d5,stroke:#657b83
+  style G fill:#fdf6e3,stroke:#657b83
+  style H fill:#eee8d5,stroke:#657b83
+  style I fill:#fdf6e3,stroke:#657b83
+  style J fill:#eee8d5,stroke:#657b83
+  style K fill:#fdf6e3,stroke:#657b83
+  style L fill:#eee8d5,stroke:#657b83
+  style M fill:#fdf6e3,stroke:#657b83
+  style N fill:#eee8d5,stroke:#657b83
+  style O fill:#dc322f,stroke:#657b83,color:#fff
+  style P fill:#b58900,stroke:#657b83,color:#fff
