@@ -1,0 +1,62 @@
+# Business Source License 1.1
+
+**Licensor:** Kenniss, Inc.  
+**Licensed Work:** metamodel  
+**Additional Use Grant:** Non-Commercial Use  
+**Change Date:** April 22, 2029  
+**Change License:** Apache License 2.0
+
+---
+
+## 1. Licensed Work
+
+The Licensed Work includes the software titled **metamodel**, including its source code, documentation, and any associated assets distributed as part of this project.
+
+## 2. License Rights
+
+Subject to compliance with this license, you may:
+- Use, copy, and modify the Licensed Work for any **Non-Commercial Use**;
+- Distribute copies of the Licensed Work and modifications for **Non-Commercial Use**;
+- Use the Licensed Work for educational, research, evaluation, or personal experimentation.
+
+## 3. Additional Use Grant – Non-Commercial Use Defined
+
+“Non-Commercial Use” means any use **not primarily intended for or directed toward commercial advantage or monetary compensation**.
+
+Examples include:
+- Academic research
+- Nonprofit activities
+- Internal use by individuals or teams for experimentation or learning purposes
+
+Any use **by or on behalf of a for-profit entity** in the context of business operations, whether internal or external, constitutes **Commercial Use** and requires a separate license.
+
+## 4. Commercial Use
+
+You may not use the Licensed Work for **Commercial Purposes** unless:
+- You have purchased a commercial license from the Licensor, or
+- You are engaging an **Authorized Integrator** listed by the Licensor, in which case the integrator is responsible for licensing on your behalf.
+
+“Commercial Purposes” includes, but is not limited to:
+- Offering services based on the Licensed Work to third parties
+- Using the Licensed Work in any product, SaaS platform, or internal service that supports commercial activities
+- Deploying the Licensed Work in production environments by or for a for-profit organization
+
+## 5. Change Date and License
+
+On or after **April 22, 2029**, the Licensed Work will automatically be made available under the **Apache License 2.0**.
+
+## 6. No Sublicensing
+
+Except through Authorized Integrators as defined by Kenniss, no sublicensing is permitted without written consent of the Licensor.
+
+## 7. Termination
+
+If you violate the terms of this License, your rights will terminate automatically. You may cure the violation within 30 days of notice. Otherwise, you must cease all use of the Licensed Work.
+
+## 8. Disclaimer
+
+THE LICENSED WORK IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND.
+
+---
+
+For commercial licensing inquiries, contact: [licensing@humanrightsconnected.org](mailto:licensing@humanrightsconnected.org)

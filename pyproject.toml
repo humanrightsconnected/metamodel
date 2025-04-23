@@ -3,23 +3,22 @@ requires = ["setuptools>=61.0"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "metamodel-core"
+name = "metamodel"
 version = "0.1.0"
 authors = [
     {name = "Pouya Barrach-Yousefi", email = "pouya@humanrightsconnected.org"},
 ]
-description = "Core library for managing metamodel definitions, validation, and schema generation"
+description = "Library for managing metamodel definitions, validation, and schema generation"
 readme = "README.md"
 requires-python = ">=3.9"
+license-files = ["LICEN[CS]E*"]
 classifiers = [
     "Programming Language :: Python :: 3",
-    "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
 ]
 dependencies = [
     "pydantic>=2.0.0",
     "protobuf>=4.22.0",
-    "gitpython>=3.1.30",
     "pyyaml>=6.0",
     "jsonschema>=4.17.0",
 ]
