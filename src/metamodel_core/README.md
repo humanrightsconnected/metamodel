@@ -1,4 +1,4 @@
-# Data Product Lifecycle v.1
+# Data Product Lifecycle v0.1
 
 May 2025
 
@@ -197,6 +197,7 @@ flowchart TD
     end
     
     subgraph B["Intake Form Required Fields"]
+        direction TB
         B1[Data Product Name]
         B2[Data Product Owner]
         B3[Business Description]
