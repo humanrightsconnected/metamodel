@@ -93,7 +93,7 @@ A data product should be leveraged when you have created a valuable dataset by t
 
 ## Key Roles
 
-| **Data Product Owner** | A Data Product Owner is responsible for overseeing the end-to-end lifecycle management of a data product at TR. They will generally be recognized as subject matter experts (SMEs) with knowledge of the transformations of the datasets contributing to a data product.<br><br>This role is responsible to:<br>- Develop and communicate a clear vision and objective for the data product.<br>- Collaborate closely with technical teams to ensure seamless integration and deployment of data products.<br>- Ensure compliance with data governance policies, standards and controls while accessing data to develop a data product.<br>- Ensure quality and accuracy of data products by defining acceptance criteria, conducting testing, and validating outputs against requirements.<br>- Creation and maintenance of data product documentation in the data catalog, ensuring that it contains accurate, up-to-date, and relevant information to enhance discoverability.<br>- Monitor the performance and usage of data products, gather feedback from data consumers, and iterate on features to optimize performance and user satisfaction. |
+| **Data Product Owner** | A Data Product Owner is responsible for overseeing the end-to-end lifecycle management of a data product. They will generally be recognized as subject matter experts (SMEs) with knowledge of the transformations of the datasets contributing to a data product.<br><br>Responsibilities:<br>- Develop and communicate a clear vision and objective for the data product.<br>- Collaborate closely with technical teams to ensure seamless integration and deployment of data products.<br>- Ensure compliance with data governance policies, standards and controls while accessing data to develop a data product.<br>- Ensure quality and accuracy of data products by defining acceptance criteria, conducting testing, and validating outputs against requirements.<br>- Creation and maintenance of data product documentation in the data catalog, ensuring that it contains accurate, up-to-date, and relevant information to enhance discoverability.<br>- Monitor the performance and usage of data products, gather feedback from data consumers, and iterate on features to optimize performance and user satisfaction. |
 |------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Data Product Developer** | Data Product Developer(s) are responsible for developing data pipelines and managing data transformations. They work closely with data product owners to implement the technical aspects of data products.<br><br>Responsibilities:<br>- Comply with standards and best practices for the data product build (architecture standards, code best practices, etc.).<br>- Collaborate with platform teams to ensure seamless integration and deployment of data products in production environments.<br>- Maintain the data products to ensure ongoing performance, security, and reliability.<br>- Adhere to best practices in the execution of the data product. |
 | **Data Consumer** | A Data Consumer uses data products to derive business insights and make informed decisions. They provide feedback on usability and quality.<br><br>Responsibilities:<br>- Request access to the required data through formal channels, while adhering to security protocols.<br>- Ensure compliance with data governance policies and standards while accessing and using data products.<br>- Provide feedback to data product owners regarding usability, relevance, and quality of the data products, contributing to its refinement and useability. |
@@ -123,10 +123,12 @@ This section outlines the steps required to build a data product from start to f
 Activities:
 
 - Set up tools
-  - What is required? - DBT, GitHub
+  - What is required? 
+    - Git
+    - DBT
   - Data in data lake
 - Design enriched dataset
-  - Modeling the data in Erwin
+  - Modeling the data
     - How does this align to the enterprise domain model
   - What are the access considerations
 - Engage Architecture
@@ -135,7 +137,7 @@ Activities:
 
 dbt™ (database tool) is a SQL-first transformation workflow that lets teams quickly and collaboratively deploy analytics code following software engineering best practices like modularity, portability, CI/CD, and documentation.
 
-We leverage dbt projects to manage data in our Snowflake databases. These projects are maintained in GitHub repositories. The GitHub projects are then used by the platform team to manage and maintain our data and schema in production databases.
+We leverage dbt projects to manage data in our Snowflake databases. These projects are maintained in Git repositories. The Git projects are then used by the platform team to manage and maintain our data and schema in production databases.
 
 Recommended Structure/environments/code promotion process: OUTSTANDING, Data Product Build documentation in-progress
 
@@ -153,7 +155,7 @@ When/how to engage
   - Validate underlying data model
   - Understand the purpose to the data product
   - Do we know the SLAs
-- Benefit
+  - Benefit
   - Engaging early reduces risk of re-design, incorporates architecture perspective to strengthen approach
 
 ## Data Product Deployment
@@ -285,7 +287,7 @@ To start, the Data Product Owner must set the Data Product flag to "Yes."
   - Domain (L1 and L2) according to the published Enterprise Data Model Guideline.
   - Any new CDE's created/derived from data transformation activities which make up their data product in the live environment.
   - Established Service Level Agreements (SLAs)
-  - Link to the GitHub Repository
+  - Link to the Git Repository
   - Data Product ID
 
 ```mermaid
@@ -309,7 +311,7 @@ flowchart TD
         G3["Domain (L1 and L2)"]
         G4[New CDEs]
         G5[SLAs]
-        G6[GitHub Repository link]
+        G6[Git Repository link]
         G7[Data Product ID]
     end
     F -.-> E2
@@ -485,4 +487,4 @@ Compliance is not a one-time achievement but an ongoing responsibility that requ
 
 [^4]: This is in line with the current scope and expected to expand in the future.
 
-[^5]: These include DBT, GitHub, Publishing Pathway, Sailpoint, and Alation.
+[^5]: These include DBT, Git, Publishing Pathway, Sailpoint, and Alation.
