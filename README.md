@@ -8,7 +8,6 @@ metamodel/
 ├── .github/
 │   └── workflows/
 │       └── ci.yml
-├── .gitignore
 ├── generated/
 │   └── .gitkeep
 ├── metamodel_core/
@@ -32,6 +31,9 @@ metamodel/
 │   ├── test_schema_generator.py
 │   ├── test_validation.py
 │   └── test_versioning.py
+├── .gitignore
+├── AUTHORIZED_INTEGRATORS.md
+├── LICENSE
 ├── pyproject.toml
 └── README.md
 ```

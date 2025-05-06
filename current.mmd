@@ -1,0 +1,11 @@
+flowchart TD
+    subgraph Current Process
+        BA["Default Metamodel in Excel on SharePoint"]
+        BB["Data product owner (DPO) copies and renames default Metamodel Excel Workbook"]
+        BC["DPO and data product team (DPT) populate rows of metadata attributes"]
+        BD["IM team gathers Metamodel Excel documents and uploads them to data catalog"]
+    end
+    BA --> BB
+    BB --> BC
+    BC --> BD
+    

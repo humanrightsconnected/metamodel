@@ -1,0 +1,61 @@
+flowchart LR
+  subgraph Internal["Internal Data"]
+    Salesforce["Salesforce Logo"]
+    Pega["Pega Logo"]
+    ot["Other"]
+    DST["DST"]
+    Workday["Workday Logo"]
+    HealthEdge["HealthEdge Logo"]
+    Icertis["Icertis Logo"]
+    JobAids["Job Aids"]
+  end
+
+  subgraph External["External Data"]
+    CVS["CVS Caremark Logo"]
+    EyeMed["EyeMed Logo"]
+    InterSystems["InterSystems Logo"]
+    Labcorp["Labcorp Logo"]
+    eMedNY["eMedNY Logo"]
+    Quest["Quest Diagnostics Logo"]
+    DentaQuest["DentaQuest Logo"]
+  end
+
+  subgraph Sources["Data Sources"]
+    direction TB
+    Internal
+    External
+  end
+
+  subgraph Ingestion["Data Ingestion"]
+    subgraph IngestionLayer
+      direction TB
+      DataContracts[Data Contracts] --> SourceConnectors[Source Connectors]
+    end
+    DataLakeHouse[Data Lakehouse Landing]
+    IngestionLayer --> DataLakeHouse
+  end
+
+  Sources <--> Ingestion
+
+  subgraph ETL_Process["ETL Process"]
+    direction LR
+    Raw --> Extract
+    Extract --> Transform
+    Transform --> Load
+    Load --> DataWarehouse[Data Warehouse]
+  end
+
+  Salesforce:::image
+  Pega:::image
+  Workday:::image
+  HealthEdge:::image
+  Icertis:::image
+  CVS:::image
+  EyeMed:::image
+  InterSystems:::image
+  Labcorp:::image
+  eMedNY:::image
+  Quest:::image
+  DentaQuest:::image
+
+

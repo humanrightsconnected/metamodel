@@ -1,0 +1,323 @@
+version: 1
+
+models:
+  - name: data_product
+    description: "Core data product metamodel"
+    columns:
+      # Access group
+      - name: access_roles
+        description: "The roles/actors who have access permissions for this data product"
+        tests:
+          - not_null
+      
+      - name: access_policy
+        description: "Policy outlining who can access the data and under what conditions"
+        tests:
+          - not_null
+      
+      - name: access_enabled
+        description: "Indicates whether the data product is currently accessible"
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['true', 'false']
+      
+      - name: sensitive_information_columns
+        description: "Columns that contain sensitive information"
+        tests:
+          - not_null
+      
+      - name: restricted_access_columns
+        description: "Specific columns in the dataset that are restricted for certain roles or users"
+        tests:
+          - not_null
+      
+      - name: data_access_time_limit
+        description: "Maximum duration for which the data can be accessed after authentication"
+      
+      # Compliance group
+      - name: phi_flag
+        description: "Indicates if Protected Health Information (PHI) is included"
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['true', 'false']
+      
+      - name: pii_flag
+        description: "Indicates if Personally Identifiable Information (PII) is included"
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['true', 'false']
+      
+      - name: licensing_and_copyright
+        description: "Legal framework dictating how the data can be used, shared, or redistributed"
+        tests:
+          - not_null
+      
+      - name: copyright_constraints
+        description: "Legal constraints regarding the reproduction or distribution of the data"
+        tests:
+          - not_null
+      
+      - name: data_rights
+        description: "Rights regarding who owns the data and how it can be used or shared"
+      
+      - name: privacy_policy
+        description: "Policy outlining how personal data will be handled and protected"
+      
+      - name: terms_of_service
+        description: "Legal terms governing the use of the data product"
+      
+      - name: data_retention_compliance
+        description: "Policies related to data retention"
+      
+      # Definition group
+      - name: description
+        description: "Description of the contents in business terms"
+        tests:
+          - not_null
+      
+      - name: last_refreshed
+        description: "Last updated/refreshed date"
+        tests:
+          - not_null
+      
+      - name: schema_definition
+        description: "Schemas include names, data types, formats, and constraints of attributes"
+        tests:
+          - not_null
+      
+      - name: business_glossary
+        description: "Definitions of business data terms"
+        tests:
+          - not_null
+      
+      - name: refresh_frequency
+        description: "Indicates how often the data is refreshed or updated"
+        tests:
+          - not_null
+      
+      - name: search_tags
+        description: "Any additional labels to facilitate search or categorization for the actual data content"
+        tests:
+          - not_null
+      
+      - name: product_version
+        description: "The current production version of the data product"
+        tests:
+          - not_null
+      
+      - name: data_product_classification
+        description: "Core or Derived classification of the data product"
+        tests:
+          - accepted_values:
+              values: ['Core', 'Derived']
+      
+      - name: schema_validation_rules
+        description: "Set of rules and constraints placed on data attributes and/or columns"
+      
+      - name: value_drivers
+        description: "Value drivers for the use cases"
+      
+      - name: capabilities_and_features
+        description: "Specification of the key capabilities/features"
+      
+      - name: business_rules
+        description: "List and mapping of business rules used to transform data"
+      
+      - name: related_data_products
+        description: "Data products that are related or can be joined with this data product"
+      
+      - name: associated_documentation
+        description: "Link to the full documentation"
+      
+      - name: service_level_definition
+        description: "Detailed description of the agreed-upon levels of reliability, availability, and other performance metrics"
+      
+      # Endpoints group
+      - name: uri
+        description: "The location for accessing the data"
+        tests:
+          - not_null
+      
+      - name: platform
+        description: "Platform infrastructure (AWS, GCP, Azure, etc.)"
+        tests:
+          - not_null
+      
+      - name: consumption_interface
+        description: "How the product is consumed (API, file, dashboard, etc.)"
+        tests:
+          - not_null
+      
+      - name: format
+        description: "Data access file format type (JSON, XML, CSV, etc.)"
+        tests:
+          - not_null
+      
+      - name: source_info
+        description: "Description and names of data sources"
+        tests:
+          - not_null
+      
+      - name: connection_info
+        description: "Information needed to establish a connection to the data product"
+      
+      - name: system_storage_specs
+        description: "Technical specifications for the systems and storage solutions where the data is hosted"
+      
+      # Key Actors group
+      - name: owner
+        description: "Primary and Secondary person(s) ACCOUNTABLE for all aspects of the data product"
+        tests:
+          - not_null
+      
+      - name: steward
+        description: "Individual(s) or team(s) responsible for building, managing and maintaining the data product"
+        tests:
+          - not_null
+      
+      - name: primary_consumers
+        description: "Current/Future consumers (names/departments/domains)"
+        tests:
+          - not_null
+      
+      - name: user_types
+        description: "Types of users or systems that are the primary consumers of the data product"
+        tests:
+          - not_null
+      
+      - name: domain
+        description: "Specific business domain/subdomain that the data product belongs to"
+        tests:
+          - not_null
+      
+      - name: enterprise
+        description: "The larger organizational entity to which the data product belongs"
+        tests:
+          - not_null
+      
+      - name: metadata_lead
+        description: "Individual(s) responsible for managing and maintaining the metadata"
+      
+      - name: ownership_agreement
+        description: "Details agreement between the parties of roles and responsibilities"
+      
+      # Quality group
+      - name: quality_process
+        description: "Description of the quality process, rules, and validation"
+      
+      - name: dq_metrics_and_scoring
+        description: "Metrics defined, captured and scored"
+      
+      # SLA Metrics group
+      - name: availability
+        description: "The uptime percentage, indicating the reliability of the data service"
+        tests:
+          - not_null
+      
+      - name: error_rate
+        description: "Percentage of error encountered in the data processing or transfer process"
+        tests:
+          - not_null
+      
+      - name: latency
+        description: "The delay in processing or transferring the data from source to destination"
+      
+      - name: throughput
+        description: "Measures the volume of data that can be processed or transferred in a given time period"
+      
+      # Standards group
+      - name: industry_security_standards
+        description: "Security standards (GDPR, HIPAA, etc.)"
+      
+      - name: industry_quality_standards
+        description: "Quality standards (ISO, etc.)"
+      
+      # Usage group
+      - name: business_use_cases
+        description: "Description of the use cases that the product plans to enable"
+        tests:
+          - not_null
+      
+      - name: consumption_patterns
+        description: "Describes how the users/systems will consume the data"
+        tests:
+          - not_null
+      
+      - name: scope_of_usage
+        description: "Context and boundaries within which the data product is intended to be used"
+        tests:
+          - not_null
+      
+      - name: usage_policy
+        description: "Guidelines and rules for the acceptable use of the data product"
+      
+      - name: usage_tracking
+        description: "Metrics or methods for tracking the use of the data product"
+      
+      - name: data_utilization_metric
+        description: "The extent to which data products are being used by stakeholders"
+      
+      # Lifecycle Management group
+      - name: current_release
+        description: "The most recent version of the data product that is available for use"
+      
+      - name: maintenance_support
+        description: "Description of processes and support structure for ongoing maintenance"
+      
+      - name: new_feature_backlog
+        description: "Description of processes for managing and prioritizing new features"
+      
+      - name: roadmap
+        description: "Document showing future product features and releases, timelines, etc."
+      
+      # KPI group
+      - name: use_cases_satisfied
+        description: "Number of use cases satisfied by the data product"
+      
+      - name: use_frequency
+        description: "Frequency of data product usage"
+      
+      - name: user_count
+        description: "Total number of users, including incremental new users"
+      
+      - name: user_feedback_volume
+        description: "Volume of feedback received from users"
+      
+      - name: user_satisfaction_score
+        description: "Ratings or satisfaction score from users"
+      
+      - name: cost_per_feature
+        description: "Financial KPI for cost per feature"
+      
+      - name: cost_savings
+        description: "Financial KPI for cost savings"
+      
+      - name: roi
+        description: "Return on investment for the data product"
+      
+      - name: feature_time_to_market
+        description: "KPI for effectiveness of the feature delivery process"
+      
+      - name: access_request_fulfillment_time
+        description: "KPI for access request processing time"
+      
+      - name: new_features_added
+        description: "Count of new features added"
+
+    meta:
+      owner: "Data Governance Team"
+      tags: ["metadata", "data product", "governance"]
+
+    tests:
+      - dbt_utils.expression_is_true:
+          expression: "phi_flag = 'true' and pii_flag = 'true' and array_length(sensitive_information_columns, 1) > 0"
+          severity: warn
+          message: "PHI and PII data should have sensitive columns identified"
+      
+      - dbt_utils.expression_is_true:
+          expression: "access_enabled = 'false' and description != ''"
+          severity: warn
+          message: "Disabled data products should have a descriptive reason"

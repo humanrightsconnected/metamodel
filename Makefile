@@ -9,9 +9,7 @@ UV := uv
 
 # Windows-compatible commands
 ifeq ($(OS),Windows_NT)
-	VENV := .venv
 	PYTHON := $(VENV)\Scripts\python
-	PIP := $(VENV)\Scripts\pip
 	ACTIVATE := $(VENV)\Scripts\activate
 else
 	ACTIVATE := source $(VENV)/bin/activate
@@ -28,6 +26,7 @@ help:
 setup:
 	$(UV) venv
 	$(UV) pip install -e ".[dev]"
+	${ACTIVATE}
 
 test:
 	$(PYTHON) -m pytest -v
@@ -42,6 +41,15 @@ format:
 	$(PYTHON) -m isort $(PROJ) tests
 
 clean:
-	rm -rf $(VENV) dist build *.egg-info .pytest_cache
-	find . -type d -name __pycache__ -exec rm -rf {} +
-	find . -type f -name "*.pyc" -delete
+	@echo "Cleaning project..."
+	ifeq ($(OS),Windows_NT)
+		if (Test-Path -Path $(VENV)) { rd /s /q $(VENV) }
+		if exist dist rd /s /q dist
+		if exist build rd /s /q build
+		if exist *.egg-info rd /s /q *.egg-info
+		if exist .pytest_cache rd /s /q .pytest_cache
+	else
+		rm -rf $(VENV) dist build *.egg-info .pytest_cache
+		find . -type d -name __pycache__ -exec rm -rf {} +
+		find . -type f -name "*.pyc" -delete
+	endif

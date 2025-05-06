@@ -11,7 +11,7 @@ from .metamodel import Metamodel
 CORE_METAMODEL_PATH = os.path.join(
     os.path.dirname(os.path.dirname(__file__)), 
     "data", 
-    "core_metamodel.json"
+    "metamodel.json"
 )
 
 
