@@ -142,7 +142,7 @@ We consider the lifecycle of a Data Product in 4 phases:
 
 4. **Retire:** This is the final phase in the data product lifecycle, where it is intentionally removed from service or replaced by a newer version. This phase is critical to ensure that outdated or non-compliant data products do not continue to consume resources and be accessed.
 
-![Data Product Lifecycle](./data/media/dplc.png)
+![Data Product Lifecycle](data/media/dplc.png)
 
 ## Data Product Build
 
