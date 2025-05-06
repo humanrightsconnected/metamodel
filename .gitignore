@@ -39,7 +39,3 @@ htmlcov/
 *.swo
 *~
 .DS_Store
-
-# Project specific
-*.json
-!tests/test_data/*.json

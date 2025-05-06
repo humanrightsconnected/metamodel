@@ -1,0 +1,512 @@
+{
+    "name": "Core Default Metamodel",
+    "version": "1.0",
+    "description": "A standardized metadata model for data products",
+    "groups": [
+      {
+        "name": "Access",
+        "description": "Fields that control and define access to the data product",
+        "attributes": [
+          {
+            "name": "Access Roles",
+            "description": "The roles/actors who have access permissions for this data product",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "Access Policy",
+            "description": "Policy outlining who can access the data and under what conditions",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "Access Enabled",
+            "description": "Indicates whether the data product is currently accessible",
+            "type": "boolean",
+            "required": true
+          },
+          {
+            "name": "Sensitive Information Columns",
+            "description": "Columns that contain sensitive information",
+            "type": "array",
+            "required": true
+          },
+          {
+            "name": "Restricted Access Columns",
+            "description": "Specific columns in the dataset that are restricted for certain roles or users",
+            "type": "array",
+            "required": true
+          },
+          {
+            "name": "Data Access Time Limit",
+            "description": "Maximum duration for which the data can be accessed after authentication",
+            "type": "string",
+            "required": false
+          }
+        ]
+      },
+      {
+        "name": "Compliance",
+        "description": "Fields related to regulatory and policy compliance",
+        "attributes": [
+          {
+            "name": "PHI",
+            "description": "Indicates if Protected Health Information (PHI) is included",
+            "type": "boolean",
+            "required": true
+          },
+          {
+            "name": "PII",
+            "description": "Indicates if Personally Identifiable Information (PII) is included",
+            "type": "boolean",
+            "required": true
+          },
+          {
+            "name": "Licensing and Copyright",
+            "description": "Legal framework dictating how the data can be used, shared, or redistributed",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "Copyright Constraints",
+            "description": "Legal constraints regarding the reproduction or distribution of the data",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "Data Rights",
+            "description": "Rights regarding who owns the data and how it can be used or shared",
+            "type": "string",
+            "required": false
+          },
+          {
+            "name": "Privacy Policy",
+            "description": "Policy outlining how personal data will be handled and protected",
+            "type": "string",
+            "required": false
+          },
+          {
+            "name": "Terms of Service",
+            "description": "Legal terms governing the use of the data product",
+            "type": "string",
+            "required": false
+          },
+          {
+            "name": "Data Retention Compliance",
+            "description": "Policies related to data retention",
+            "type": "string",
+            "required": false
+          }
+        ]
+      },
+      {
+        "name": "Definition",
+        "description": "Fields that define the data product structure and meaning",
+        "attributes": [
+          {
+            "name": "Description",
+            "description": "Description of the contents in business terms",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "Last Refreshed",
+            "description": "Last updated/refreshed date",
+            "type": "datetime",
+            "required": true
+          },
+          {
+            "name": "Schema",
+            "description": "Schemas include names, data types, formats, and constraints of attributes",
+            "type": "object",
+            "required": true
+          },
+          {
+            "name": "Business Glossary",
+            "description": "Definitions of business data terms",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "Refresh Frequency",
+            "description": "Indicates how often the data is refreshed or updated",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "Search Tags",
+            "description": "Any additional labels to facilitate search or categorization for the actual data content",
+            "type": "array",
+            "required": true
+          },
+          {
+            "name": "Product Version",
+            "description": "The current production version of the data product",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "Data Product Classification",
+            "description": "Core or Derived classification of the data product",
+            "type": "string",
+            "enum": ["Core", "Derived"],
+            "required": false
+          },
+          {
+            "name": "Schema Validation Rules",
+            "description": "Set of rules and constraints placed on data attributes and/or columns",
+            "type": "array",
+            "required": false
+          },
+          {
+            "name": "Value Drivers",
+            "description": "Value drivers for the use cases",
+            "type": "array",
+            "required": false
+          },
+          {
+            "name": "Capabilities and Features",
+            "description": "Specification of the key capabilities/features",
+            "type": "array",
+            "required": false
+          },
+          {
+            "name": "Business Rules",
+            "description": "List and mapping of business rules used to transform data",
+            "type": "array",
+            "required": false
+          },
+          {
+            "name": "Related Data Products",
+            "description": "Data products that are related or can be joined with this data product",
+            "type": "array",
+            "required": false
+          },
+          {
+            "name": "Associated Documentation",
+            "description": "Link to the full documentation",
+            "type": "string",
+            "required": false
+          },
+          {
+            "name": "Service Level Definition",
+            "description": "Detailed description of the agreed-upon levels of reliability, availability, and other performance metrics",
+            "type": "string",
+            "required": false
+          }
+        ]
+      },
+      {
+        "name": "Endpoints",
+        "description": "Fields that describe how to access and consume the data product",
+        "attributes": [
+          {
+            "name": "URI",
+            "description": "The location for accessing the data",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "Platform",
+            "description": "Platform infrastructure (AWS, GCP, Azure, etc.)",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "Consumption Interface",
+            "description": "How the product is consumed (API, file, dashboard, etc.)",
+            "type": "array",
+            "required": true
+          },
+          {
+            "name": "Format",
+            "description": "Data access file format type (JSON, XML, CSV, etc.)",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "Source Info",
+            "description": "Description and names of data sources",
+            "type": "object",
+            "required": true
+          },
+          {
+            "name": "Connection Info",
+            "description": "Information needed to establish a connection to the data product",
+            "type": "string",
+            "required": false
+          },
+          {
+            "name": "System and Storage Specs",
+            "description": "Technical specifications for the systems and storage solutions where the data is hosted",
+            "type": "string",
+            "required": false
+          }
+        ]
+      },
+      {
+        "name": "Key Actors",
+        "description": "Fields that identify responsible parties and users",
+        "attributes": [
+          {
+            "name": "Owner",
+            "description": "Primary and Secondary person(s) ACCOUNTABLE for all aspects of the data product",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "Steward",
+            "description": "Individual(s) or team(s) responsible for building, managing and maintaining the data product",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "Primary Consumers",
+            "description": "Current/Future consumers (names/departments/domains)",
+            "type": "array",
+            "required": true
+          },
+          {
+            "name": "User Types",
+            "description": "Types of users or systems that are the primary consumers of the data product",
+            "type": "array",
+            "required": true
+          },
+          {
+            "name": "Domain",
+            "description": "Specific business domain/subdomain that the data product belongs to",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "Enterprise",
+            "description": "The larger organizational entity to which the data product belongs",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "Metadata Lead",
+            "description": "Individual(s) responsible for managing and maintaining the metadata",
+            "type": "string",
+            "required": false
+          },
+          {
+            "name": "Ownership Agreement",
+            "description": "Details agreement between the parties of roles and responsibilities",
+            "type": "string",
+            "required": false
+          }
+        ]
+      },
+      {
+        "name": "Quality",
+        "description": "Fields related to data quality metrics and processes",
+        "attributes": [
+          {
+            "name": "Quality Process",
+            "description": "Description of the quality process, rules, and validation",
+            "type": "string",
+            "required": false
+          },
+          {
+            "name": "DQ Metrics and Scoring",
+            "description": "Metrics defined, captured and scored",
+            "type": "object",
+            "required": false
+          }
+        ]
+      },
+      {
+        "name": "SLA Metrics",
+        "description": "Fields related to service level agreements",
+        "attributes": [
+          {
+            "name": "Availability",
+            "description": "The uptime percentage, indicating the reliability of the data service",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "Error Rate",
+            "description": "Percentage of error encountered in the data processing or transfer process",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "Latency",
+            "description": "The delay in processing or transferring the data from source to destination",
+            "type": "string",
+            "required": false
+          },
+          {
+            "name": "Throughput",
+            "description": "Measures the volume of data that can be processed or transferred in a given time period",
+            "type": "string",
+            "required": false
+          }
+        ]
+      },
+      {
+        "name": "Standards",
+        "description": "Fields related to industry standards and compliance",
+        "attributes": [
+          {
+            "name": "Industry Security Standards",
+            "description": "Security standards (GDPR, HIPAA, etc.)",
+            "type": "array",
+            "required": false
+          },
+          {
+            "name": "Industry Quality Standards",
+            "description": "Quality standards (ISO, etc.)",
+            "type": "array",
+            "required": false
+          }
+        ]
+      },
+      {
+        "name": "Usage",
+        "description": "Fields related to how the data product is used",
+        "attributes": [
+          {
+            "name": "Business Use Cases",
+            "description": "Description of the use cases that the product plans to enable",
+            "type": "array",
+            "required": true
+          },
+          {
+            "name": "Consumption Patterns",
+            "description": "Describes how the users/systems will consume the data",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "Scope of Usage",
+            "description": "Context and boundaries within which the data product is intended to be used",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "Usage Policy",
+            "description": "Guidelines and rules for the acceptable use of the data product",
+            "type": "string",
+            "required": false
+          },
+          {
+            "name": "Usage Tracking",
+            "description": "Metrics or methods for tracking the use of the data product",
+            "type": "string",
+            "required": false
+          },
+          {
+            "name": "Data Utilization Metric",
+            "description": "The extent to which data products are being used by stakeholders",
+            "type": "object",
+            "required": false
+          }
+        ]
+      },
+      {
+        "name": "Lifecycle Management",
+        "description": "Fields related to the lifecycle of the data product",
+        "attributes": [
+          {
+            "name": "Current Release",
+            "description": "The most recent version of the data product that is available for use",
+            "type": "string",
+            "required": false
+          },
+          {
+            "name": "Maintenance & Support",
+            "description": "Description of processes and support structure for ongoing maintenance",
+            "type": "string",
+            "required": false
+          },
+          {
+            "name": "New Feature Backlog",
+            "description": "Description of processes for managing and prioritizing new features",
+            "type": "string",
+            "required": false
+          },
+          {
+            "name": "Roadmap",
+            "description": "Document showing future product features and releases, timelines, etc.",
+            "type": "string",
+            "required": false
+          }
+        ]
+      },
+      {
+        "name": "KPI",
+        "description": "Fields related to key performance indicators",
+        "attributes": [
+          {
+            "name": "Use Cases Satisfied",
+            "description": "Number of use cases satisfied by the data product",
+            "type": "integer",
+            "required": false
+          },
+          {
+            "name": "Use Frequency",
+            "description": "Frequency of data product usage",
+            "type": "string",
+            "required": false
+          },
+          {
+            "name": "User Count",
+            "description": "Total number of users, including incremental new users",
+            "type": "integer",
+            "required": false
+          },
+          {
+            "name": "User Feedback Volume",
+            "description": "Volume of feedback received from users",
+            "type": "integer",
+            "required": false
+          },
+          {
+            "name": "User Satisfaction Score",
+            "description": "Ratings or satisfaction score from users",
+            "type": "number",
+            "required": false
+          },
+          {
+            "name": "Cost Per Feature",
+            "description": "Financial KPI for cost per feature",
+            "type": "number",
+            "required": false
+          },
+          {
+            "name": "Cost Savings",
+            "description": "Financial KPI for cost savings",
+            "type": "number",
+            "required": false
+          },
+          {
+            "name": "ROI",
+            "description": "Return on investment for the data product",
+            "type": "number",
+            "required": false
+          },
+          {
+            "name": "Feature Time-to-Market",
+            "description": "KPI for effectiveness of the feature delivery process",
+            "type": "string",
+            "required": false
+          },
+          {
+            "name": "Access Request Fulfillment Time",
+            "description": "KPI for access request processing time",
+            "type": "string",
+            "required": false
+          },
+          {
+            "name": "New Features Added",
+            "description": "Count of new features added",
+            "type": "integer",
+            "required": false
+          }
+        ]
+      }
+    ]
+}
