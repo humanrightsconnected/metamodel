@@ -1,5 +1,4 @@
-<html>
-    <style>
+<style>
     /* (This is a CSS comment). The below `img` style sets the default CSS styling for all images
     hereafter in this markdown file. */
     img
@@ -26,8 +25,8 @@
         or pixels (px). Ex: `width:100%;` or `height:600px;`. */
         /* height:400px; */
     }
-    </style>
-</html>
+</style>
+
 
 # Data Product Lifecycle v.1
 
