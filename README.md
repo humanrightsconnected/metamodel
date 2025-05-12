@@ -1,5 +1,10 @@
 # metamodel
-Metamodel representation in json
+Enterprise Data Product Metamodel manamagement and the Data Product Life Cycle
+
+## Executive Summary
+
+This project defines a comprehensive Enterprise Data Product metamodel strategy and illustrates how it interacts with the Enterprise Data Product Life Cycle. The metamodel provides a structured framework for conceptualizing, designing, implementing, and managing data products within an enterprise context, ensuring alignment with business objectives, governance requirements, and user needs throughout the product lifecycle.
+
 
 ## Project Structure
 
