@@ -64,13 +64,15 @@ CURRENT SCOPE: The full data product service today supports products built off u
 
 ## Data Product Definition
 
-A **data product** is a ready-to-use set of accessible and enriched quality data that is built to deliver specific objectives and business value and can be consumed in a self-service manner.
+A **data product** is a ready-to-use set of accessible and enriched quality data that is built to deliver specific objectives and business value and can be consumed in a self-service manner. Data products may include structured data (tables, databases), semi-structured data (JSON, XML), and unstructured data (PDFs, documents, images) as components or sources.
 
 A data product should be leveraged when you have created a valuable dataset by transforming and enriching a variety of data sources, which can then be reused by teams across the enterprise. Examples of a data product include:
 
 - Curated, normalized, and restructured views of source data, making it more usable and immediately consumable
 - Integrated datasets that consolidate data from multiple sources, providing a unified view
 - Derived datasets resulting from aggregations, calculations, or analyses of multiple data sets, offering new insights and value
+- Enriched unstructured data products that leverage document analysis, text extraction, or metadata extraction to provide structured insights from unstructured sources
+- Multi-modal data products that combine structured and unstructured data to create comprehensive business views
 
 ### Data Product Characteristics
 
@@ -95,7 +97,7 @@ A data product should be leveraged when you have created a valuable dataset by t
 
 | **Role**       | Description |
 |------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Data Product Owner** | A Data Product Owner is responsible for overseeing the end-to-end lifecycle management of a data product. They will generally be recognized as subject matter experts (SMEs) with knowledge of the transformations of the datasets contributing to a data product.<br><br>Responsibilities:<br>- Develop and communicate a clear vision and objective for the data product.<br>- Collaborate closely with technical teams to ensure seamless integration and deployment of data products.<br>- Ensure compliance with data governance policies, standards and controls while accessing data to develop a data product.<br>- Ensure quality and accuracy of data products by defining acceptance criteria, conducting testing, and validating outputs against requirements.<br>- Creation and maintenance of data product documentation in the data catalog, ensuring that it contains accurate, up-to-date, and relevant information to enhance discoverability.<br>- Monitor the performance and usage of data products, gather feedback from data consumers, and iterate on features to optimize performance and user satisfaction. |
+| **Data Product Owner** | A Data Product Owner is responsible for overseeing the end-to-end lifecycle management of a data product at TR. They will generally be recognized as subject matter experts (SMEs) with knowledge of the transformations of the datasets contributing to a data product.<br><br>This role is responsible to:<br>- Develop and communicate a clear vision and objective for the data product.<br>- Collaborate closely with technical teams to ensure seamless integration and deployment of data products.<br>- Ensure compliance with data governance policies, standards and controls while accessing data to develop a data product.<br>- Ensure quality and accuracy of data products by defining acceptance criteria, conducting testing, and validating outputs against requirements.<br>- Creation and maintenance of data product documentation in the data catalog, ensuring that it contains accurate, up-to-date, and relevant information to enhance discoverability.<br>- Monitor the performance and usage of data products, gather feedback from data consumers, and iterate on features to optimize performance and user satisfaction. |
 | **Data Product Developer** | Data Product Developer(s) are responsible for developing data pipelines and managing data transformations. They work closely with data product owners to implement the technical aspects of data products.<br><br>Responsibilities:<br>- Comply with standards and best practices for the data product build (architecture standards, code best practices, etc.).<br>- Collaborate with platform teams to ensure seamless integration and deployment of data products in production environments.<br>- Maintain the data products to ensure ongoing performance, security, and reliability.<br>- Adhere to best practices in the execution of the data product. |
 | **Data Consumer** | A Data Consumer uses data products to derive business insights and make informed decisions. They provide feedback on usability and quality.<br><br>Responsibilities:<br>- Request access to the required data through formal channels, while adhering to security protocols.<br>- Ensure compliance with data governance policies and standards while accessing and using data products.<br>- Provide feedback to data product owners regarding usability, relevance, and quality of the data products, contributing to its refinement and useability. |
 | **Enterprise Data Architect** | Data Architects provide guidance on data product design, ensuring compatibility and adherence to enterprise principles.<br><br>Responsibilities:<br>- Engage teams in the process of building an anticipated data product to provide feedback during the design period.<br>- Provide a data architecture review for all new data product deployment requests.<br>- Participate in the review and approval of new data product deployment requests. |
@@ -119,7 +121,7 @@ We consider the lifecycle of a Data Product in 4 phases:
 
 ## Data Product Build
 
-This section outlines the steps required to build a data product from start to finish. This involves setting up required tooling,
+This section outlines the steps required to build a data product from start to finish. This involves setting up required tooling for both structured and unstructured data processing.
 
 Activities:
 
@@ -127,18 +129,23 @@ Activities:
   - What is required? 
     - Git
     - DBT
-  - Data in data lake
+    - Document Processing Tools (OCR, NLP libraries)
+  - Data in data lake (structured and unstructured)
+  - Text extraction and analysis tools for unstructured content
 - Design enriched dataset
-  - Modeling the data
+  - Modeling the data in data modelling tools
     - How does this align to the enterprise domain model
+    - Define schema for extracted content from unstructured sources
   - What are the access considerations
+  - Define extraction and processing methods for unstructured data
 - Engage Architecture
+  - Include architecture review for unstructured data processing approaches
 
 ### Data Build Tool (dbt)
 
 dbt™ (database tool) is a SQL-first transformation workflow that lets teams quickly and collaboratively deploy analytics code following software engineering best practices like modularity, portability, CI/CD, and documentation.
 
-We leverage dbt projects to manage data in our Snowflake databases. These projects are maintained in Git repositories. The Git projects are then used by the platform team to manage and maintain our data and schema in production databases.
+We leverage dbt projects to manage data in our ETL pipeliness. These projects are maintained in Git repositories. The Git projects are then used by the platform team to manage and maintain our data and schema in production.
 
 Recommended Structure/environments/code promotion process: OUTSTANDING, Data Product Build documentation in-progress
 
@@ -156,8 +163,10 @@ When/how to engage
   - Validate underlying data model
   - Understand the purpose to the data product
   - Do we know the SLAs
-  - Benefit
+  - For unstructured data products: validate extraction methods, processing approach, and output schema design
+- Benefit
   - Engaging early reduces risk of re-design, incorporates architecture perspective to strengthen approach
+  - For unstructured data products: ensures optimal processing patterns and avoids performance bottlenecks
 
 ## Data Product Deployment
 
@@ -167,10 +176,12 @@ The deployment phase starts when the team identifies the intention to make their
 
 1. Data Product Owner(s) are identified.
 2. The business value of the intended data product is identified.
-3. Data Product Owner has AWS access.
+3. Data Product Owner has AWS / Data Lakehouse access.
 4. Data required for building the data product is in the Enterprise Data Lake.[^4]
 5. The Data Product Owner has an MDS and has been granted access to the data required for building Data Products in that MDS.
 6. Data Product Owner understands the tools required to support a Data Product.[^5]
+7. For unstructured data products: Documentation processing tools and content extraction methods are identified and configured.
+8. For unstructured data products: Content quality and extraction validation processes are defined.
 
 ### Step 1: Submit Data Impact Assessment
 
@@ -282,6 +293,7 @@ To start, the Data Product Owner must set the Data Product flag to "Yes."
   - Inherit all CDE tags from the data source if the tables have not been changed.
   - Data Steward -- if different from the Data Product Owner
   - Security Control Group -- adhering to standard format: Domain.Data Product Name.Classification
+  - For unstructured data products: Document type tags, content extraction methods, source document metadata
 
 - **Data product owner** must ensure the Data Product schema is enriched with the following metadata:
   - Data Product Owner
@@ -291,6 +303,7 @@ To start, the Data Product Owner must set the Data Product flag to "Yes."
   - Established Service Level Agreements (SLAs)
   - Link to the Git Repository
   - Data Product ID
+  - For unstructured data products: Content processing methods, extraction tools used, document format supported, and quality/confidence metrics
 
 ```mermaid
 flowchart TD
@@ -332,14 +345,15 @@ Data products are cataloged in the Enterprise Data Catalog, which leverages the 
 
 - Ensure all relevant metadata fields on the Data Product record are populated and up to date.
 - Maintain detailed documentation on the data product to enable users to better understand and leverage the dataset. This documentation should be immediately accessible within or from the data catalog and should explain both technical and business context relevant to the product.
+- For unstructured data products: Document the content extraction methods, quality metrics, supported document formats, and any limitations in extraction accuracy.
 
-Also available in the catalog is **data lineage**. Lineage is an important aspect of data products as it provides a clear understanding of the origin, movement, and transformation of data through the development, enabling trust and transparency to consumers. Lineage is exposed in the Enterprise Data Catalog at the *table* and *column* levels under the "Lineage" tab. The information is automatically populated using Manta, a data lineage tool, and lineage harvested from dbt.
+Also available in the catalog is **data lineage**. Lineage is an important aspect of data products as it provides a clear understanding of the origin, movement, and transformation of data through the development, enabling trust and transparency to consumers. Lineage is exposed in the Enterprise Data Catalog at the *table* and *column* levels under the "Lineage" tab. The information is automatically populated using a data lineage tool and lineage harvested from dbt. For unstructured data products, lineage tracking includes the source documents, extraction processes, transformation methods, and resulting structured data outputs.
 
 ### Access Management
 
 Once live in production and properly cataloged, a data product can be accessed by consumers across the enterprise. Access to data products is managed through policy-based access control supported by Immuta and Sailpoint. The *Security Control Group* field at the table-level controls the granularity of access.
 
-Access to any tables or data products classified as *Internal,* is automatically granted to all users across the Enterprise with no approval required by the Data Product Owner. For any data classified at a higher level, access must be requested by the consumer via the Enterprise Data Access Request form -- [Person](). The Data Product Owner is responsible for evaluating and approving all access requests to the data product and monitoring that access over time, reviewing user access logs at minimum biannually and remove any users who have left the organization, changed roles, or no longer require access.
+Access to any tables or data products classified as *Internal,* is automatically granted to all users across the Enterprise with no approval required by the Data Product Owner. For any data classified at a higher level, access must be requested by the consumer via the Enterprise Data Access Request form -- [Person]() or [Service User](). The Data Product Owner is responsible for evaluating and approving all access requests to the data product and monitoring that access over time, reviewing user access logs at minimum biannually and remove any users who have left the organization, changed roles, or no longer require access. This can be determined in conjunction with Data Governance and automated.
 
 ### Enhancements and Change Management
 
@@ -357,6 +371,13 @@ Data Quality Framework and Data Quality Standard
 
 DQ Dashboard
 
+For unstructured data products, quality monitoring includes:
+- Content extraction accuracy monitoring (comparing extracted text against manual reviews)
+- Document processing completeness (ensuring all documents in a batch are processed)
+- Metadata extraction quality (validating extracted entities, dates, and other structured data from unstructured sources)
+- File integrity checks (ensuring document files are not corrupted during processing)
+- Processing performance metrics (monitoring extraction times and system resource usage)
+
 ### Operational Support
 
 ## Data Product Retirement
@@ -372,10 +393,12 @@ In advance of retiring a Data Product, the Data Product owner must first perform
 - If the existing Data Product deviates from the intended purpose, the current version will need to be replaced by a new version to meet the data consumers' needs.
 - If the data product consistently fails DQ thresholds, then it must be turned off or retired from being searchable until the quality issue can be resolved.
 - If one or more data sources is consistently down or contaminated for periods of time, then it can no longer be deemed reliable and should be turned off or retired after careful consideration.
+- For unstructured data products: If document extraction accuracy falls below acceptable thresholds or processing systems consistently fail, retirement may be necessary.
+- For unstructured data products: If the underlying document formats change significantly, making existing extraction processes obsolete, replacement or substantial revision may be required.
 - Regulatory pressures or litigations may require turning off one, several or All input data sources used in a data product. This is a leading indicator for retirement or replacement of the data product.
 - A Data Subject Access Request (DSAR) may result in automatic retirement or replacement of a Data Product. The Data Product owners must cooperate with the DSAR request.
 
-Data Product owners must consult with data governance teams to document policies relating to the retention period and steps to delete data following its useful life in a data product.
+Data Product owners must consult with data governance teams to document policies relating to the retention period and steps to delete data following its useful life in a data product. For unstructured data products, this includes secure deletion of both source documents and extracted content.
 
 - Executive direction can be used to retire or replace a data product.
 
@@ -489,4 +512,4 @@ Compliance is not a one-time achievement but an ongoing responsibility that requ
 
 [^4]: This is in line with the current scope and expected to expand in the future.
 
-[^5]: These include DBT, Git, Publishing Pathway, Sailpoint, and Alation.
+[^5]: These include DBT, Git, and Catalog.
