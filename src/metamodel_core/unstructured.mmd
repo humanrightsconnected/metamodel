@@ -1,0 +1,79 @@
+flowchart LR
+ subgraph Sources["Sources"]
+        HL7["HL7-FHIR: JSON,XML<br>(Metadata, PDFs)"]
+  end
+ subgraph Raw["Raw"]
+    direction TB
+        PDF["PDF"]
+        Metadata["Metadata<br>(JSON)"]
+  end
+ subgraph Publish["Publish"]
+        EnhancedPDF1["Enhanced PDF"]
+        EnhancedMeta1["Enriched<br>Metadata<br>(JSON)"]
+  end
+ subgraph DataProduct["Data Product"]
+        Publish
+  end
+ subgraph Lake["Lake"]
+        Landing["Landing<br>(Complete Package)"]
+        Raw
+        DataProduct
+  end
+ subgraph SDLC["SDLC"]
+        CLP["Clinical<br>Language<br>Processor"]
+  end
+ subgraph Alfresco["Alfresco"]
+        EnhancedPDF2["Enhanced PDF"]
+        EnhancedMeta2["Enriched<br>Metadata<br>(JSON)"]
+  end
+ subgraph Pega["Pega"]
+        App1["App 1"]
+        App2["App 2"]
+  end
+ subgraph Business["???"]
+        PDF3["PDF"]
+        Meta3["Enriched<br>Metadata<br>(JSON)"]
+  end
+    Sources --> Landing
+    Landing -- Data<br>Acquisition --> Raw
+    Raw --> CLP
+    CLP --> Publish
+    Publish -- Data<br>Transfer --> Alfresco & Business
+    Alfresco --> Pega
+    Pega --> App1 & App2
+    App1 --> User1["👤 User 1"]
+    App2 --> User2["👤 User 2"]
+    Business <--> BusinessUser["👤 Business<br>User"]
+    PegaLabel["Pega"]
+    AlfrescoLabel["Alfresco"]
+    LakeLabel["Lake"]
+    n1["Text Block"]
+
+    n1@{ shape: text}
+     HL7:::sourceStyle
+     EnhancedPDF1:::publishStyle
+     EnhancedMeta1:::publishStyle
+     DataProduct:::productStyle
+     CLP:::processingStyle
+     App1:::pegaStyle
+     App2:::pegaStyle
+     Alfresco:::alfresco
+     Business:::businessStyle
+     Pega:::pegaStyle
+     User1:::userStyle
+     User2:::userStyle
+     BusinessUser:::userStyle
+     PegaLabel:::hidden
+     AlfrescoLabel:::hidden
+     LakeLabel:::hidden
+     Lake:::lakeStyle
+     SDLC:::processingStyle
+    classDef sourceStyle fill:#f9f9f9,stroke:#333,stroke-width:2px
+    classDef lakeStyle fill:#fef9e7,stroke:#333,stroke-width:2px
+    classDef processingStyle fill:#f9f9f9,stroke:#333,stroke-width:2px
+    classDef productStyle fill:#fffbf0,stroke:#333,stroke-width:1px,stroke-dasharray: 5 5
+    classDef alfresco fill:#e8d5ff,stroke:#333,stroke-width:2px
+    classDef pegaStyle fill:#f9f9f9,stroke:#333,stroke-width:2px
+    classDef businessStyle fill:#d5f0ff,stroke:#333,stroke-width:2px
+    classDef userStyle fill:#87ceeb,stroke:#333,stroke-width:1px
+    classDef hidden fill:transparent,stroke:transparent
